@@ -31,6 +31,11 @@ migrate_working_dir/
 .pub/
 /build/
 
+# Generated plugin registrant files
+**/generated_plugins.*
+**/generated_plugin_registrant.*
+**/GeneratedPluginRegistrant.*
+
 # Symbolication related
 app.*.symbols
 
