@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:defeefront/themes/app_theme.dart';
 
 class Popular extends StatelessWidget {
   const Popular({super.key});
@@ -28,15 +29,15 @@ class Popular extends StatelessWidget {
           SizedBox(height: 10),
           Text(
             "재로그",
-            style: TextStyle(fontSize: 13, fontWeight: FontWeight.normal),
+            style: DefeeTextStyles.bodySmall,
           ),
           Text(
             "SOLID - SRP와 OCP",
-            style: TextStyle(fontSize: 23, fontWeight: FontWeight.normal),
+            style: DefeeTextStyles.bodyLarge,
           ),
           SizedBox(height: 10),
           Divider(
-            color: Colors.grey,
+            color: DefeeColors.grey,
             thickness: 1,
           ),
         ],

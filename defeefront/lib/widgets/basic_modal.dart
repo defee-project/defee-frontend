@@ -1,13 +1,14 @@
+import 'package:defeefront/themes/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class BasicModal extends StatelessWidget {
   final Widget child; // Modal 내부에 표시할 위젯
-  final String title; // Modal 상단에 표시할 제목
+  final String? title; // Modal 상단에 표시할 제목
 
   const BasicModal({
     Key? key,
     required this.child,
-    required this.title,
+    this.title,
   }) : super(key: key);
 
   @override
@@ -23,26 +24,14 @@ class BasicModal extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            title,
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-          ),
-          SizedBox(height: 20),
-          child, // 부모 위젯에서 전달한 내용을 표시
-          SizedBox(height: 20),
-          Center(
-            child: ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: Text("닫기"),
-              style: ElevatedButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
+          if (title != null && title!.isNotEmpty)
+            Text(
+              title!,
+              style: DefeeTextStyles.bodyMedium,
             ),
-          ),
+          SizedBox(height: 40),
+          SizedBox(height: 100, child: child),
+          SizedBox(height: 40),
         ],
       ),
     );

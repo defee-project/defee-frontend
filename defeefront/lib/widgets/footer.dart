@@ -1,3 +1,4 @@
+import 'package:defeefront/themes/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class Footer extends StatelessWidget {
@@ -8,7 +9,7 @@ class Footer extends StatelessWidget {
     final String? currentRoute = ModalRoute.of(context)?.settings.name;
 
     return Container(
-      color: Colors.grey[850],
+      color: Theme.of(context).colorScheme.surfaceContainer,
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -66,11 +67,11 @@ class Footer extends StatelessWidget {
           return GestureDetector(
             onTap: () => Navigator.pushNamed(context, route),
             child: Container(
-              padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 25),
+              padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 25),
               decoration: isActive
                   ? BoxDecoration(
-                      borderRadius: BorderRadius.circular(25),
-                      color: Colors.white38,
+                      borderRadius: DefeeThemeSizes.borderRadius,
+                      color: Theme.of(context).colorScheme.secondary,
                     )
                   : null,
               child: Column(
@@ -78,15 +79,19 @@ class Footer extends StatelessWidget {
                 children: [
                   Icon(
                     icon,
-                    size: 20,
-                    color: isActive ? Colors.white : Colors.white70,
+                    size: 28,
+                    color: isActive
+                        ? Theme.of(context).colorScheme.onSecondary
+                        : Theme.of(context).colorScheme.onSurface,
                   ),
                   const SizedBox(height: 4),
                   Text(
                     label,
                     style: TextStyle(
                       fontSize: 14,
-                      color: isActive ? Colors.white : Colors.white70,
+                      color: isActive
+                          ? Theme.of(context).colorScheme.onSecondary
+                          : Theme.of(context).colorScheme.onSurface,
                     ),
                   ),
                 ],

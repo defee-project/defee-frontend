@@ -1,3 +1,4 @@
+import 'package:defeefront/themes/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class Category extends StatelessWidget {
@@ -10,10 +11,7 @@ class Category extends StatelessWidget {
       width: double.infinity,
       alignment: Alignment.center,
       child: DefaultTextStyle(
-        style: const TextStyle(
-          fontSize: 13,
-          color: Color.fromARGB(255, 92, 92, 92),
-        ),
+        style: DefeeTextStyles.onSurfaceSmall,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: const [

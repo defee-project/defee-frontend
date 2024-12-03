@@ -1,4 +1,5 @@
 import 'package:defeefront/screens/search/widgets/search_history.dart';
+import 'package:defeefront/themes/app_theme.dart';
 import 'package:flutter/material.dart';
 import '../../widgets/footer.dart';
 import '../../widgets/header.dart';
@@ -58,19 +59,21 @@ class _SearchState extends State<Search> {
                 });
               },
               child: Container(
-                padding: EdgeInsets.all(12.0),
+                padding: DefeeThemeSizes.thickPadding,
                 decoration: BoxDecoration(
-                  color: Color(0xff002686),
-                  borderRadius: BorderRadius.circular(8.0),
+                  color: Theme.of(context).colorScheme.primary,
+                  borderRadius: DefeeThemeSizes.primaryBorderRadius,
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
                       '인기 키워드',
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(
+                          color: Theme.of(context).colorScheme.onPrimary),
                     ),
-                    Icon(Icons.arrow_drop_down, color: Colors.white),
+                    Icon(Icons.arrow_drop_down,
+                        color: Theme.of(context).colorScheme.onPrimary),
                   ],
                 ),
               ),
@@ -90,11 +93,13 @@ class _SearchState extends State<Search> {
                             runSpacing: 12.0, // 칩 수직 간격
                             children: [
                               ...popularKeywords.map((keyword) {
-                                bool isSelected = selectedKeyword == keyword; // 클릭된 키워드 확인
+                                bool isSelected =
+                                    selectedKeyword == keyword; // 클릭된 키워드 확인
                                 return GestureDetector(
                                   onTap: () {
                                     // 클릭 시 검색바에 키워드 설정
-                                    searchBarKey.currentState?.setKeyword(keyword);
+                                    searchBarKey.currentState
+                                        ?.setKeyword(keyword);
                                     setState(() {
                                       selectedKeyword = keyword; // 선택된 키워드 업데이트
                                     });
@@ -102,15 +107,21 @@ class _SearchState extends State<Search> {
                                   child: Chip(
                                     label: Text(
                                       keyword,
-                                      style: TextStyle(
-                                          color: Colors.white, fontSize: 18.0),
+                                      style: DefeeTextStyles.onSurfaceSmall,
                                     ),
                                     padding: EdgeInsets.symmetric(
                                         horizontal: 12.0,
                                         vertical: 10.0), // 패딩 조정
-                                    backgroundColor: isSelected? Color(0xff002686) : Color(0xffBABABA), // 칩 배경색
+                                    backgroundColor: isSelected
+                                        ? Theme.of(context)
+                                            .colorScheme
+                                            .secondary
+                                        : Theme.of(context)
+                                            .colorScheme
+                                            .surfaceContainer, // 칩 배경색
                                     shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(15.0),
+                                      borderRadius:
+                                          DefeeThemeSizes.chipBorderRadius,
                                       // 모서리 둥글게
                                       side: BorderSide.none, // 외곽선 제거
                                     ),
@@ -118,12 +129,14 @@ class _SearchState extends State<Search> {
                                 );
                               }).toList(),
                               IconButton(
-                                icon: Icon(Icons.add, color: Color(0xff002686)),
+                                icon: Icon(Icons.add,
+                                    color:
+                                        Theme.of(context).colorScheme.primary),
                                 // '+' 아이콘
                                 onPressed: () {
                                   // TODO: '+' 아이콘 클릭
                                 },
-                                color: Color(0xff002686),
+                                color: Theme.of(context).colorScheme.primary,
                                 // 아이콘 배경색
                                 padding: EdgeInsets.symmetric(
                                     horizontal: 16.0, vertical: 10.0),
@@ -148,19 +161,20 @@ class _SearchState extends State<Search> {
                 });
               },
               child: Container(
-                padding: EdgeInsets.all(12.0),
+                padding: DefeeThemeSizes.thickPadding,
                 decoration: BoxDecoration(
-                  color: Color(0xff002686),
-                  borderRadius: BorderRadius.circular(8.0),
+                  color: Theme.of(context).colorScheme.primary,
+                  borderRadius: DefeeThemeSizes.primaryBorderRadius,
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
                       '내 키워드',
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(
+                          color: Theme.of(context).colorScheme.onPrimary),
                     ),
-                    Icon(Icons.arrow_drop_down, color: Colors.white),
+                    Icon(Icons.arrow_drop_down, color: DefeeColors.white),
                   ],
                 ),
               ),
@@ -189,15 +203,17 @@ class _SearchState extends State<Search> {
                                   child: Chip(
                                     label: Text(
                                       keyword,
-                                      style: TextStyle(
-                                          color: Colors.white, fontSize: 18.0),
+                                      style: DefeeTextStyles.onSurfaceSmall,
                                     ),
                                     padding: EdgeInsets.symmetric(
                                         horizontal: 12.0,
                                         vertical: 10.0), // 패딩 조정
-                                    backgroundColor: Color(0xffBABABA), // 칩 배경색
+                                    backgroundColor: Theme.of(context)
+                                        .colorScheme
+                                        .surfaceContainer, // 칩 배경색
                                     shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(15.0),
+                                      borderRadius:
+                                          DefeeThemeSizes.chipBorderRadius,
                                       // 모서리 둥글게
                                       side: BorderSide.none, // 외곽선 제거
                                     ),

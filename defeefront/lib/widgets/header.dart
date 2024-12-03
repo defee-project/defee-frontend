@@ -10,7 +10,7 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
       leading: IconButton(
         icon: Icon(
           Icons.arrow_back_ios_new,
-          color: Colors.indigo[900],
+          color: Theme.of(context).colorScheme.primary,
           size: 24,
         ),
         onPressed: () {
@@ -19,10 +19,6 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
       ),
       title: Text(
         "헤드라인",
-        style: TextStyle(
-            color: Colors.indigo[900],
-            fontWeight: FontWeight.bold,
-            fontSize: 24),
       ),
     );
   }
