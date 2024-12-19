@@ -2,6 +2,7 @@ import 'package:defeefront/widgets/input_box.dart';
 import 'package:defeefront/widgets/input_btn_box.dart';
 import 'package:defeefront/widgets/input_pw_box.dart';
 import 'package:flutter/material.dart';
+import 'package:defeefront/themes/app_theme.dart';
 
 class Signup extends StatefulWidget {
   const Signup({super.key});
@@ -137,14 +138,14 @@ class _SignupState extends State<Signup> {
                   "{ }",
                   style: TextStyle(
                     fontSize: 50,
-                    color: Color.fromARGB(255, 0, 38, 134),
+                    color: DefeeColors.blue,
                   ),
                 ),
                 Text(
                   "defee;",
                   style: TextStyle(
                     fontSize: 30,
-                    color: Color.fromARGB(255, 0, 38, 134),
+                    color: DefeeColors.blue,
                   ),
                 ),
                 SizedBox(height: 30),
@@ -207,15 +208,15 @@ class _SignupState extends State<Signup> {
               onPressed: _isFormValid ? _onSignUp : null,
               style: ElevatedButton.styleFrom(
                 minimumSize: const Size(350, 50),
-                backgroundColor: const Color.fromARGB(200, 0, 38, 134),
-                disabledBackgroundColor: Colors.grey,
+                backgroundColor: DefeeColors.blue,
+                disabledBackgroundColor: DefeeColors.grey,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8.0),
+                  borderRadius: DefeeThemeSizes.primaryBorderRadius,
                 ),
               ),
               child: const Text(
                 "Sign up",
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: DefeeColors.white),
               ),
             ),
           ],
