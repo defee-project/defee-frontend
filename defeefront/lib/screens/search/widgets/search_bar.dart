@@ -6,7 +6,7 @@ class MainSearchBar extends StatefulWidget {
   const MainSearchBar({super.key, this.onKeywordSelected});
 
   @override
-  MainSearchBarState createState() => MainSearchBarState(); // 상태 클래스 이름을 올바르게 지정
+  MainSearchBarState createState() => MainSearchBarState();
 }
 
 class MainSearchBarState extends State<MainSearchBar> {

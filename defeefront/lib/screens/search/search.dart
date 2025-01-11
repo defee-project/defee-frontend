@@ -1,5 +1,6 @@
 import 'package:defeefront/screens/search/widgets/search_history.dart';
 import 'package:defeefront/themes/app_theme.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import '../../widgets/footer.dart';
 import '../../widgets/header.dart';
@@ -7,7 +8,6 @@ import '../../screens/search/widgets/search_bar.dart';
 import '../search_result/search_result.dart';
 
 class Search extends StatefulWidget {
-  // Stateless -> StatefulWidget으로 변경
   const Search({super.key});
 
   @override
@@ -19,19 +19,44 @@ class _SearchState extends State<Search> {
   String? selectedMyKeyword; //내 키워드 선택 여부
   bool showPopularKeywords = false; // 인기 키워드 칩 표시 여부
   bool showMyKeywords = false; // 내 키워드 칩 표시 여부
+  bool isLoading = true; // API 데이터 로딩 상태
 
-  // Dummy Data
-  final List<String> popularKeywords = [
-    '인기 키워드1',
-    '스바라시 키워드2',
-    '슈퍼 키워드3',
-    '핫한 키워드',
-    '여긴 뭐쓰지'
-  ];
-  final List<String> myKeywords = ['내 키워드1', '백엔드 내 키워드2', '내꺼 키워드3', '내 키워드4'];
+  List<String> popularKeywords = [];
+  List<String> myKeywords = [];
+  List<String> titles = [];
 
   final GlobalKey<MainSearchBarState> searchBarKey =
       GlobalKey<MainSearchBarState>();
+
+  @override
+  void initState() {
+    super.initState();
+    fetchTitles();
+  }
+
+  Future<void> fetchTitles() async {
+    try {
+      Dio dio = Dio();
+      final response = await dio.get('http://localhost:8080/api/posts');
+
+      setState(() {
+        titles = List<String>.from(response.data.map((post) {
+          return post['title'] ?? '제목 없음';
+        }));
+        isLoading = false;
+      });
+    } catch (e) {
+      if (e is DioException) {
+        print('Error: ${e.response?.statusCode}');
+        print('Error Message: ${e.message}');
+      } else {
+        print('Unexpected Error: $e');
+      }
+      setState(() {
+        isLoading = false;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,12 +69,13 @@ class _SearchState extends State<Search> {
             //상단 검색 바
             MainSearchBar(
               key: searchBarKey, // GlobalKey 설정
-              onKeywordSelected: (keyword) {
+              onKeywordSelected: (results) {
                 // 검색어가 선택되면 검색 결과 페이지로 이동
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => SearchResult(keyword: keyword), // 검색어를 SearchResult로 전달
+                    builder: (context) =>
+                        SearchResult(results: results), // 검색어를 SearchResult로 전달
                   ),
                 );
               },
@@ -276,6 +302,13 @@ class _SearchState extends State<Search> {
             ),
 
             SearchHistory(),
+
+            Divider(
+              thickness: 1.0,
+              color: Colors.grey,
+            ),
+
+
           ],
         ),
       ),

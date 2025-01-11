@@ -16,7 +16,7 @@ final routes = {
   '/signup': (BuildContext context) => Signup(),
   '/search': (BuildContext context) => Search(),
   '/searchresult': (BuildContext context) => SearchResult(
-        keyword: '',
+        results: '',
       ),
   '/recommend': (BuildContext context) => Recommend(),
   '/my': (BuildContext context) => const MyPage(),
